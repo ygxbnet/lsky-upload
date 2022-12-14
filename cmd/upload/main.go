@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io"
 	"lsky-upload/internal/config"
 	"lsky-upload/internal/httpapi"
 	"lsky-upload/internal/tool"
@@ -28,10 +29,12 @@ func main() {
 
 	url := flag.Args()
 	for _, urlStr := range url {
-		var getData []byte
+
+		var getData io.Reader
+		var imageName string
 
 		if urlStr[0:4] == "http" {
-			getData = httpapi.GetImageData(urlStr)
+			getData = httpapi.GetNetworkImageData(urlStr)
 		} else {
 			data, err := os.ReadFile(urlStr)
 			if err != nil {
@@ -40,6 +43,6 @@ func main() {
 			}
 			getData = data
 		}
-		fmt.Println(httpapi.UploadImageToLsky(getData, configData.LskyServer, configData.LskyAuthToken))
+		fmt.Println(httpapi.UploadImageToLsky(getData, imageName, configData.LskyServer, configData.LskyAuthToken))
 	}
 }

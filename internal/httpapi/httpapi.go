@@ -7,40 +7,33 @@ import (
 	"io"
 	"mime/multipart"
 	"net/http"
-	"os"
 )
 
 // UploadImageToLsky 上传图片到Lsky，返回图片URL
-func UploadImageToLsky(data []byte, server string, authToken string) string {
-	bodyBuffer := &bytes.Buffer{}
-	bodyWriter := multipart.NewWriter(bodyBuffer)
+func UploadImageToLsky(data io.Reader, imageName string, serverURL string, authToken string) string {
 
-	fileWriter, _ := bodyWriter.CreateFormFile("files", "file.txt")
+	var bufReader bytes.Buffer
 
-	file, _ := os.Open("file.txt")
-	defer file.Close()
-
-	io.Copy(fileWriter, file)
-
-	payload := &bytes.Buffer{}
-	writer := multipart.NewWriter(payload)
-	_ = writer.WriteField("file", string(data))
-	err := writer.Close()
+	// 生成form表单
+	mpWriter := multipart.NewWriter(&bufReader)
+	fw, err := mpWriter.CreateFormFile("file", imageName)
 	if err != nil {
 		fmt.Println(err)
 		return ""
 	}
+	io.Copy(fw, data)
+	mpWriter.Close()
 
+	// 请求http
 	client := &http.Client{}
-	req, err := http.NewRequest("POST", server, payload)
+	req, err := http.NewRequest("POST", serverURL+"/api/v1/upload", &bufReader)
 	if err != nil {
 		fmt.Println(err)
 		return ""
 	}
 
 	req.Header.Add("Authorization", "Bearer "+authToken)
-	req.Header.Add("Content-Type", "multipart/form-data")
-
+	req.Header.Set("Content-Type", mpWriter.FormDataContentType())
 	res, err := client.Do(req)
 	if err != nil {
 		fmt.Println(err)
@@ -56,8 +49,8 @@ func UploadImageToLsky(data []byte, server string, authToken string) string {
 	return gjson.Parse(string(body)).Get("data").Get("links").Get("url").String()
 }
 
-// GetImageData 请求URL，获取图片数据，返回数据
-func GetImageData(url string) []byte {
+// GetNetworkImageData 请求URL，获取图片数据，返回数据
+func GetNetworkImageData(url string) []byte {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {

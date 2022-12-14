@@ -2,6 +2,8 @@ package update
 
 import (
 	"bytes"
+	"lsky-upload/internal/config"
+	"lsky-upload/internal/httpapi"
 	"mime/multipart"
 	"os"
 	"testing"
@@ -34,4 +36,18 @@ func TestUpload(t *testing.T) {
 
 	t.Log(bufReader.String())
 	t.Log(mpWriter.FormDataContentType())
+}
+
+func TestUploadImage(t *testing.T) {
+
+	var fileName = "test.png"
+	var filePath = `C:\Users\LXM\Pictures\4456352-8938615d16aa9d71.png`
+
+	data, err2 := os.Open(filePath)
+	if err2 != nil {
+		t.Fatal(err2)
+	}
+
+	var cof = config.Parse(`C:\YGXB\Project\lsky-upload`)
+	t.Log(httpapi.UploadImageToLsky(data, fileName, cof.LskyServer, cof.LskyAuthToken))
 }
