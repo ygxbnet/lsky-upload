@@ -8,6 +8,8 @@ import (
 	"lsky-upload/internal/httpapi"
 	"lsky-upload/internal/tool"
 	"os"
+	"path/filepath"
+	"time"
 )
 
 // 注意在开发时需要将路径传入，例如：-path C:\YGXB\Project\upload
@@ -19,6 +21,8 @@ func init() {
 	flag.Parse()
 }
 func main() {
+
+	//解析配置文件
 	var programPath string
 	if *path == "" {
 		programPath = tool.GetProgramPath()
@@ -27,22 +31,31 @@ func main() {
 	}
 	configData = config.Parse(programPath)
 
+	//得到URL地址
 	url := flag.Args()
-	for _, urlStr := range url {
 
+	//URL分类上传到图床
+	for _, urlStr := range url {
 		var getData io.Reader
 		var imageName string
 
 		if urlStr[0:4] == "http" {
+			imageName = fmt.Sprintf("%s.webp", time.Now().Format("2006-01-02 15:04:05"))
 			getData = httpapi.GetNetworkImageData(urlStr)
 		} else {
-			data, err := os.ReadFile(urlStr)
+			imageName = filepath.Base(urlStr)
+
+			data, err := os.Open(urlStr)
 			if err != nil {
 				fmt.Println(err)
 				os.Exit(1)
 			}
 			getData = data
 		}
-		fmt.Println(httpapi.UploadImageToLsky(getData, imageName, configData.LskyServer, configData.LskyAuthToken))
+
+		imageURL := httpapi.UploadImageToLsky(getData, imageName, configData.LskyServer, configData.LskyAuthToken)
+		if imageURL != "" {
+			fmt.Println(imageURL)
+		}
 	}
 }

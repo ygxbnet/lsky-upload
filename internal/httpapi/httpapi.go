@@ -50,14 +50,14 @@ func UploadImageToLsky(data io.Reader, imageName string, serverURL string, authT
 }
 
 // GetNetworkImageData 请求URL，获取图片数据，返回数据
-func GetNetworkImageData(url string) []byte {
+func GetNetworkImageData(url string) io.Reader {
+
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Println(err)
 		return nil
 	}
-
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.52")
 
 	res, err := client.Do(req)
@@ -67,10 +67,6 @@ func GetNetworkImageData(url string) []byte {
 	}
 	defer res.Body.Close()
 
-	body, err := io.ReadAll(res.Body)
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	return body
+	pix, _ := io.ReadAll(res.Body)
+	return bytes.NewReader(pix)
 }

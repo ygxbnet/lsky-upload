@@ -12,6 +12,7 @@ var defaultConfig string
 
 // Parse 从默认配置文件路径中获取
 func Parse(filePath string) Config {
+
 	initFile(filePath)
 
 	file, err := os.ReadFile(filePath + "/config.yml")
@@ -31,6 +32,7 @@ func Parse(filePath string) Config {
 
 // initFile 初始化及检测配置文件，如果不存在则创建配置文件
 func initFile(filePath string) {
+	
 	_, err := os.Stat(filePath + "/config.yml")
 	if os.IsNotExist(err) {
 		file, err := os.Create(filePath + "/config.yml")
