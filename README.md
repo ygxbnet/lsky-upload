@@ -25,7 +25,7 @@ lsky-upload 使用 golang 语言开发，程序高效，快速，简洁
 
 ## 下载 & 安装
 
-1. 前往 [Release](./releases) 界面，下载最新版本
+1. 前往 [Release](../../releases) 界面，下载最新版本
 2. TODO...
 
 ## :email:联系我
