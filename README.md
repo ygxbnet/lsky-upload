@@ -1,7 +1,7 @@
 # lsky-upload
 Picture bed upload program of Lsky（Lsky 图床的上传程序）
 
-![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/YGXB-net/lsky-upload) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/YGXB-net/lsky-upload) ![GitHub](https://img.shields.io/github/license/YGXB-net/lsky-upload)
+[![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/YGXB-net/lsky-upload)](https://golang.google.cn/) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/YGXB-net/lsky-upload)](../../releases) [![GitHub](https://img.shields.io/github/license/YGXB-net/lsky-upload)](./LICENSE)
 
 > 该项目为本人在使用 [PicGo](https://github.com/Molunerfinn/PicGo) 与 [Typora](https://typoraio.cn/) 时，觉得 PicGo 虽然功能强大，但过于复杂
 >
@@ -26,7 +26,16 @@ lsky-upload 使用 golang 语言开发，程序高效，快速，简洁
 ## 下载 & 安装
 
 1. 前往 [Release](../../releases) 界面，下载最新版本
-2. TODO...
+
+2. 解压下载的压缩包，得到 `lsky-upload.exe` 文件
+
+3. `lsky-upload.exe` 文件放到一个空文件夹中（例：`C:\ProgramFiles\lsky-upload`）
+
+4. 运行 `lsky-upload.exe` ，在文件夹中会生成 `config.yml` 文件，修改配置
+
+5. 修改 Typora 配置，在 "命令" 中填入 `lsky-upload.exe` 的位置（例：`C:\ProgramFiles\lsky-upload\lsky-upload.exe`）
+
+   ![image-20221219075617888](https://image.ygxb.net/i/2022/12/19/639fa89fc444e.webp)
 
 ## :email:联系我
 
