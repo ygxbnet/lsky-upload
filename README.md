@@ -15,7 +15,7 @@ Picture bed upload program of Lsky（Lsky 图床的上传程序）
 
 **支持的图床为：[兰空图床(Lsky Pro)](https://github.com/lsky-org/lsky-pro)（版本: v2.x）**
 
-lsky-upload 使用 golang 语言开发，程序高效，快速，简洁
+lsky-upload 使用 **golang** 语言开发，程序高效，快速，简洁
 
 ## 功能
 
