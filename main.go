@@ -21,8 +21,7 @@ func init() {
 	flag.Parse()
 }
 func main() {
-
-	//解析配置文件
+	// 解析配置文件
 	var programPath string
 	if *path == "" {
 		programPath = tool.GetProgramPath()
@@ -31,10 +30,10 @@ func main() {
 	}
 	configData = config.Parse(programPath)
 
-	//得到URL地址
+	// 得到URL地址
 	url := flag.Args()
 
-	//URL分类上传到图床
+	// URL分类上传到图床
 	for _, urlStr := range url {
 		var getData io.Reader
 		var imageName string
