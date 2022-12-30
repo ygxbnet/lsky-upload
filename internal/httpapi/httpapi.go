@@ -65,6 +65,6 @@ func GetNetworkImageData(url string) io.Reader {
 	}
 	defer res.Body.Close()
 
-	pix, _ := io.ReadAll(res.Body)
-	return bytes.NewReader(pix)
+	imageData, _ := io.ReadAll(res.Body)
+	return bytes.NewReader(imageData)
 }

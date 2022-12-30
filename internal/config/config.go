@@ -8,7 +8,7 @@ import (
 )
 
 //go:embed config-default.yml
-var defaultConfig string
+var DEFAULT_CONFIG string
 
 // Parse 从默认配置文件路径中获取
 func Parse(filePath string) Config {
@@ -40,7 +40,7 @@ func initFile(filePath string) {
 		}
 		defer file.Close()
 
-		_, err = file.Write([]byte(defaultConfig))
+		_, err = file.Write([]byte(DEFAULT_CONFIG))
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
