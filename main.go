@@ -56,17 +56,22 @@ func main() {
 
 			data, err := os.Open(urlString)
 			if err != nil {
-				fmt.Println(err)
+				fmt.Println("打开文件失败", err)
 				os.Exit(1)
 			}
 			getData = data
 		}
 
-		imageURL, err := httpapi.UploadImageToLsky(getData, imageName, configData.LskyServer, configData.LskyAuthToken)
+		returnMessage, err := httpapi.UploadImageToLsky(getData, imageName, configData.LskyServer, configData.LskyAuthToken)
 		if err != nil {
 			fmt.Println("上传图片错误：", err)
 			return
 		}
-		fmt.Println(imageURL.Get("data").Get("links").Get("url").String())
+
+		if returnMessage.Get("status").String() == "true" {
+			fmt.Println(returnMessage.Get("data").Get("links").Get("url").String())
+		} else {
+			fmt.Println("上传图片失败。服务器返回信息：", returnMessage.Get("message").String())
+		}
 	}
 }
