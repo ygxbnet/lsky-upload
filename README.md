@@ -31,7 +31,7 @@ lsky-upload 使用 **golang** 语言开发，程序高效，快速，简洁
 
 3. `lsky-upload.exe` 文件放到一个空文件夹中（例：`C:\ProgramFiles\lsky-upload`）
 
-4. 运行 `lsky-upload.exe` ，在文件夹中会生成 `config.yml` 文件，修改配置（详细信息请参考[相关文档](./doc/README.md)）
+4. 运行 `lsky-upload.exe` ，在文件夹中会生成 `config.yml` 文件，修改配置（详细信息请参考[相关文档](./docs/README.md)）
 
 5. 修改 Typora 配置，在 "命令" 中填入 `lsky-upload.exe` 的位置（例：`C:\ProgramFiles\lsky-upload\lsky-upload.exe`）
 
