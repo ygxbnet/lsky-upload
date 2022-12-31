@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-// 注意在开发时需要将路径传入，例如：-PATH C:\YGXB\Project\upload
+// PATH 注意在开发时需要将路径传入，例如：-PATH C:\YGXB\Project\upload
 var PATH = flag.String("PATH", "", "程序路径")
 
 var configData config.Result
