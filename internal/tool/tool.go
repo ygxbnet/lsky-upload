@@ -1,16 +1,15 @@
 package tool
 
 import (
-	"log"
 	"os"
 	"path/filepath"
 )
 
-func GetProgramPath() string {
+// GetProgramPath 获取程序路径
+func GetProgramPath() (string, error) {
 	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+		return "", err
 	}
-	return dir
+	return dir, nil
 }

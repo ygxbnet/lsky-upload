@@ -13,9 +13,9 @@ import (
 )
 
 // 注意在开发时需要将路径传入，例如：-PATH C:\YGXB\Project\upload
-var PATH = *flag.String("PATH", "", "程序路径")
+var PATH = flag.String("PATH", "", "程序路径")
 
-var config_data config.Config
+var configData config.Config
 
 func init() {
 	flag.Parse()
@@ -23,12 +23,17 @@ func init() {
 func main() {
 	// 解析配置文件
 	var programPath string
-	if PATH == "" {
-		programPath = tool.GetProgramPath()
+	if *PATH == "" {
+		path, err := tool.GetProgramPath()
+		if err != nil {
+			fmt.Println("获取程序路径错误：", err)
+			os.Exit(1)
+		}
+		programPath = path
 	} else {
-		programPath = PATH
+		programPath = *PATH
 	}
-	config_data = config.Parse(programPath)
+	configData = config.Parse(programPath)
 
 	// 得到URL地址
 	url := flag.Args()
@@ -40,7 +45,12 @@ func main() {
 
 		if urlString[0:4] == "http" {
 			imageName = fmt.Sprintf("%s.webp", time.Now().Format("2006-01-02 15:04:05"))
-			getData = httpapi.GetNetworkImageData(urlString)
+			data, err := httpapi.GetNetworkImageData(urlString)
+			if err != nil {
+				fmt.Println("获取网络图片错误：", err)
+				return
+			}
+			getData = data
 		} else {
 			imageName = filepath.Base(urlString)
 
@@ -52,9 +62,11 @@ func main() {
 			getData = data
 		}
 
-		imageURL := httpapi.UploadImageToLsky(getData, imageName, config_data.LskyServer, config_data.LskyAuthToken)
-		if imageURL != "" {
-			fmt.Println(imageURL)
+		imageURL, err := httpapi.UploadImageToLsky(getData, imageName, configData.LskyServer, configData.LskyAuthToken)
+		if err != nil {
+			fmt.Println("上传图片错误：", err)
+			return
 		}
+		fmt.Println(imageURL.Get("data").Get("links").Get("url").String())
 	}
 }
