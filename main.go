@@ -26,7 +26,7 @@ func main() {
 	if *PATH == "" {
 		path, err := tool.GetProgramPath()
 		if err != nil {
-			fmt.Println("获取程序路径错误：", err)
+			fmt.Println("无法获取当前程序路径：", err)
 			os.Exit(1)
 		}
 		programPath = path

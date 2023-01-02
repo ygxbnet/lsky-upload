@@ -11,7 +11,7 @@ import (
 var DEFAULT_CONFIG string
 
 // Parse 从默认配置文件路径中获取
-func Parse(filePath string) Result {
+func Parse(filePath string) (config Result) {
 	initFile(filePath)
 
 	file, err := os.ReadFile(filePath + "/config.yml")
@@ -20,13 +20,13 @@ func Parse(filePath string) Result {
 		os.Exit(1)
 	}
 
-	config := Result{}
-	err = yaml.Unmarshal(file, &config)
+	conf := Result{}
+	err = yaml.Unmarshal(file, &conf)
 	if err != nil {
 		fmt.Println("解析配置文件错误", err)
 		os.Exit(1)
 	}
-	return config
+	return conf
 }
 
 // initFile 初始化及检测配置文件，如果不存在则创建配置文件

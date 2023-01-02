@@ -9,7 +9,7 @@ import (
 )
 
 // UploadImageToLsky 上传图片到Lsky，返回相关信息
-func UploadImageToLsky(data io.Reader, imageName string, serverURL string, authToken string) (gjson.Result, error) {
+func UploadImageToLsky(data io.Reader, imageName string, serverURL string, authToken string) (response gjson.Result, error error) {
 	var bufReader bytes.Buffer
 
 	// 生成form表单
@@ -47,7 +47,7 @@ func UploadImageToLsky(data io.Reader, imageName string, serverURL string, authT
 }
 
 // GetNetworkImageData 请求URL，获取图片数据，返回数据
-func GetNetworkImageData(url string) (io.Reader, error) {
+func GetNetworkImageData(url string) (data io.Reader, error error) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
