@@ -6,7 +6,7 @@ import (
 	"io"
 	"lsky-upload/internal/config"
 	"lsky-upload/internal/httpapi"
-	"lsky-upload/internal/tool"
+	"lsky-upload/internal/utils"
 	"os"
 	"path/filepath"
 	"time"
@@ -24,7 +24,7 @@ func main() {
 	// 解析配置文件
 	var programPath string
 	if *PATH == "" {
-		path, err := tool.GetProgramPath()
+		path, err := utils.GetProgramPath()
 		if err != nil {
 			fmt.Println("无法获取当前程序路径：", err)
 			os.Exit(1)
