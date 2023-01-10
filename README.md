@@ -3,11 +3,15 @@ Picture bed upload program of Lsky（Lsky 图床的上传程序）
 
 [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/YGXB-net/lsky-upload)](https://golang.google.cn/) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/YGXB-net/lsky-upload)](../../releases/latest) [![GitHub](https://img.shields.io/github/license/YGXB-net/lsky-upload)](./LICENSE)
 
+[文档](./docs) • [下载](../../releases/latest) • [开始使用](#下载--使用方法)
+
 > 该项目为本人在使用 [PicGo](https://github.com/Molunerfinn/PicGo) 时，觉得 PicGo 虽然功能强大，但过于复杂
 >
 > 所以就想自己开发一个简单，可以满足自己需求的程序，并且开源出来
 >
 > 于是就有了此项目 [lsky-upload](https://github.com/YGXB-net/lsky-upload)
+
+------
 
 ## 应用概述
 
