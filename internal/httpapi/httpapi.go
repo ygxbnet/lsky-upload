@@ -2,25 +2,24 @@ package httpapi
 
 import (
 	"bytes"
-	"github.com/tidwall/gjson"
 	"io"
 	"mime/multipart"
 	"net/http"
 )
 
 // UploadImageToLsky 上传图片到Lsky，返回相关信息
-func UploadImageToLsky(data io.Reader, imageName string, serverURL string, authToken string) (response gjson.Result, error error) {
+func UploadImageToLsky(data io.Reader, imageName string, serverURL string, authToken string) (response *http.Response, error error) {
 	var bufReader bytes.Buffer
 
 	// 生成form表单
 	mpWriter := multipart.NewWriter(&bufReader)
 	fw, err := mpWriter.CreateFormFile("file", imageName)
 	if err != nil {
-		return gjson.Result{}, err
+		return nil, err
 	}
 	_, err = io.Copy(fw, data)
 	if err != nil {
-		return gjson.Result{}, err
+		return nil, err
 	}
 	mpWriter.Close()
 
@@ -28,22 +27,17 @@ func UploadImageToLsky(data io.Reader, imageName string, serverURL string, authT
 	client := &http.Client{}
 	req, err := http.NewRequest("POST", serverURL+"/api/v1/upload", &bufReader)
 	if err != nil {
-		return gjson.Result{}, err
+		return nil, err
 	}
 
 	req.Header.Add("Authorization", "Bearer "+authToken)
 	req.Header.Set("Content-Type", mpWriter.FormDataContentType())
 	res, err := client.Do(req)
 	if err != nil {
-		return gjson.Result{}, err
+		return nil, err
 	}
-	defer res.Body.Close()
 
-	body, err := io.ReadAll(res.Body)
-	if err != nil {
-		return gjson.Result{}, err
-	}
-	return gjson.Parse(string(body)), nil
+	return res, nil
 }
 
 // GetNetworkImageData 请求URL，获取图片数据，返回数据
