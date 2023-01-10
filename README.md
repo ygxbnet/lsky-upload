@@ -3,7 +3,7 @@ Picture bed upload program of Lsky（Lsky 图床的上传程序）
 
 [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/YGXB-net/lsky-upload)](https://golang.google.cn/) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/YGXB-net/lsky-upload)](../../releases/latest) [![GitHub](https://img.shields.io/github/license/YGXB-net/lsky-upload)](./LICENSE)
 
-> 该项目为本人在使用 [PicGo](https://github.com/Molunerfinn/PicGo) 与 [Typora](https://typoraio.cn/) 时，觉得 PicGo 虽然功能强大，但过于复杂
+> 该项目为本人在使用 [PicGo](https://github.com/Molunerfinn/PicGo) 时，觉得 PicGo 虽然功能强大，但过于复杂
 >
 > 所以就想自己开发一个简单，可以满足自己需求的程序，并且开源出来
 >
@@ -23,7 +23,7 @@ lsky-upload 使用 **golang** 语言开发，程序高效，快速，简洁
 - 获取网络图片并上传到图床
 - 与 Typora 结合，实现插入图片自动上传，优化写作流程
 
-## 下载 & 安装
+## 下载 & 使用方法
 
 1. 前往 [Release](../../releases) 界面，下载最新版本
 
@@ -56,4 +56,6 @@ go build
 
 本项目的文档和教程还未完善
 
-如果不会使用 或使用时遇到程序错误，可以加我的 QQ: 3040809965，我会一一解答问题
+如果不会使用或使用时遇到程序错误，可以加我的 QQ: 3040809965，我会一一解答问题
+
+同时也欢迎提出建议，我也会尽量采取
