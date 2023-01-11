@@ -16,14 +16,14 @@ func Parse(filePath string) (config Result) {
 
 	file, err := os.ReadFile(filePath + "/config.yml")
 	if err != nil {
-		fmt.Println("❗读取配置文件错误", err)
+		fmt.Println("❗读取配置文件错误：", err)
 		os.Exit(1)
 	}
 
 	conf := Result{}
 	err = yaml.Unmarshal(file, &conf)
 	if err != nil {
-		fmt.Println("❗解析配置文件错误", err)
+		fmt.Println("❗解析配置文件错误：", err)
 		os.Exit(1)
 	}
 	return conf

@@ -13,7 +13,9 @@ import (
 	"time"
 )
 
-// PATH 注意在开发时需要将路径传入，例如：-path C:\YGXB\Project\upload
+// PATH 注意在开发时需要将路径传入
+//
+// 例如：-path C:\YGXB\Project\upload
 var PATH = flag.String("path", "", "程序路径")
 
 var configData config.Result
@@ -34,6 +36,7 @@ func main() {
 		}
 		programPath = path
 	} else {
+		// 开发时运行路径与项目路径不同,需使用手动传入的 config.yml 地址
 		programPath = *PATH
 	}
 	configData = config.Parse(programPath)
@@ -42,23 +45,23 @@ func main() {
 	urls := flag.Args()
 
 	// URL分类上传到图床
-	for _, urlString := range urls {
+	for _, url := range urls {
 		var getData io.Reader
 		var imageName string
 
 		// 读取图片文件
-		if urlString[0:4] == "http" {
+		if url[0:4] == "http" { // 判断是否为网络图片
 			imageName = fmt.Sprintf("%s.webp", time.Now().Format("2006-01-02 15:04:05"))
-			data, err := httpapi.GetNetworkImageData(urlString)
+			data, err := httpapi.GetNetworkImageData(url)
 			if err != nil {
 				fmt.Println("❗获取网络图片错误：", err)
 				return
 			}
 			getData = data
 		} else {
-			imageName = filepath.Base(urlString)
+			imageName = filepath.Base(url)
 
-			data, err := os.Open(urlString)
+			data, err := os.Open(url)
 			if err != nil {
 				fmt.Println("❗打开文件失败", err)
 				os.Exit(1)
