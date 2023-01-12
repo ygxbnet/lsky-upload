@@ -12,8 +12,7 @@ func TestGetFileType(t *testing.T) {
 		t.Error(err)
 	}
 
-	buff := make([]byte, 512)
-
+	buff := make([]byte, 512) // 只读取512字节，减少内存开销
 	_, err = data.Body.Read(buff)
 
 	fileType := http.DetectContentType(buff)

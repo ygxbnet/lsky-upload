@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
 	"github.com/tidwall/gjson"
@@ -8,6 +9,7 @@ import (
 	"lsky-upload/internal/config"
 	"lsky-upload/internal/httpapi"
 	"lsky-upload/internal/utils"
+	"net/http"
 	"os"
 	"path/filepath"
 	"time"
@@ -51,13 +53,23 @@ func main() {
 
 		// 读取图片文件
 		if url[0:4] == "http" { // 判断是否为网络图片
-			imageName = fmt.Sprintf("%s.webp", time.Now().Format("2006-01-02 15:04:05"))
 			data, err := httpapi.GetNetworkImageData(url)
+			defer data.Close()
+
+			// 解析图片类型
+			imageType := "webp"
+			buff, err := io.ReadAll(data)
+			fileType := http.DetectContentType(buff)
+			if fileType[:5] == "image" { // 格式：image/jpeg
+				imageType = fileType[6:]
+			}
+
+			imageName = fmt.Sprintf("%s.%s", time.Now().Format("2006-01-02 15:04:05"), imageType)
 			if err != nil {
 				fmt.Println("❗获取网络图片错误：", err)
 				return
 			}
-			getData = data
+			getData = bytes.NewReader(buff)
 		} else {
 			imageName = filepath.Base(url)
 
@@ -89,7 +101,7 @@ func main() {
 				fmt.Println(gjson.Parse(string(returnMessage)).Get("data").Get("links").Get("url").String())
 			} else {
 				// 上传失败
-				fmt.Println("❗上传图片失败 服务器返回信息：", gjson.Parse(string(returnMessage)).Get("message").String())
+				fmt.Println("❗上传图片失败 服务器返回信息：", string(returnMessage))
 			}
 		} else {
 			// 请求上传图片接口失败
