@@ -43,3 +43,5 @@ Lsky 接口的 Token
 ```yaml
 lsky-auth-token: 1|2kDE7QCXRhIWfgXC9bF3axSbCr1dBjIfRPebQ2oo
 ```
+
+**注：配置的冒号后有空格**
