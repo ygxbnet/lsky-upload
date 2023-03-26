@@ -46,7 +46,9 @@ func initFile(filePath string) {
 			os.Exit(1)
 		}
 		fmt.Println("未发现配置文件，已创建 ", filePath+"/config.yml")
-		fmt.Println("请修改配置文件后再重新启动")
+		fmt.Println("请按照文档修改配置文件（按 Enter 键关闭程序）")
+
+		fmt.Scanln()
 		os.Exit(0)
 	}
 }

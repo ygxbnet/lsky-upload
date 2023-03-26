@@ -12,8 +12,8 @@
 
 # Lsky 服务器地址
 # 例如：https://example.com
-lsky-server:
+lsky-server: https://example.com
 
 # Lsky 接口的 Token
 # 例如：1|2kDE7QCXRhIWfgXC9bF3axSbCr1dBjIfRPebQ2oo
-lsky-auth-token:
+lsky-auth-token: 1|2kDE7QCXRhIWfgXC9bF3axSbCr1dBjIfRPebQ2oo
