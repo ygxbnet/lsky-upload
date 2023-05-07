@@ -37,9 +37,11 @@ lsky-upload 使用 **golang** 语言开发，程序高效，快速，简洁
 
 4. 运行 `lsky-upload.exe` ，在文件夹中会生成 `config.yml` 文件，修改配置（详细信息请参考[相关文档](./docs/README.md)）
 
-5. 修改 Typora 配置，在 "命令" 中填入 `lsky-upload.exe` 的位置（例：`C:\ProgramFiles\lsky-upload\lsky-upload.exe`）
+5. 修改 Typora 配置，在 "命令" 中填入 `lsky-upload.exe` 的位置（例：`"C:\ProgramFiles\lsky-upload\lsky-upload.exe"`）
 
-   ![image-20221219075617888](https://image.ygxb.net/i/2022/12/19/639faced17f15.png)
+   **注意：填入命令时一定要在路径两边加上 `"` 否则可能会因为路径有空格而无法运行**
+
+   ![截图](./docs/img/screenshot.png)
 
 ## :hammer:构建
 
@@ -54,12 +56,8 @@ go build
 - E-mail: [me@ygxb.net](mailto:me@ygxb.net)
 - QQ: 3040809965
 
-**欢迎大家前来交流讨论**
-
 ## 其他
 
-本项目的文档和教程还未完善
+本项目的文档和教程还未完善，欢迎大家提出建议和问题到 [Issues](https://github.com/YGXB-net/lsky-upload/issues)
 
 如果不会使用或使用时遇到程序错误，可以加我的 QQ: 3040809965，我会一一解答问题
-
-同时也欢迎提出建议，我也会尽量采取
