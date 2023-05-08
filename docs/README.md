@@ -22,7 +22,7 @@ lsky-auth-token: 1|2kDE7QCXRhIWfgXC9bF3axSbCr1dBjIfRPebQ2oo
 
 #### `lsky-server`
 
-Lsky 服务器的地址
+**Lsky 服务器的地址**
 
 正确写法为 `http://example.com` 或 `http://example.com:8080`
 
@@ -34,11 +34,11 @@ lsky-server: https://example.com
 
 #### `lsky-auth-token`
 
-Lsky 接口的 Token
+**Lsky 接口的 Token**
 
 获取方法可以参考这篇文章：[兰空图床LskyV2如何通过API获取Token？](https://www.52xzv.cn/archives/880.html)
 
-或采用 ApiFox 在线调用您的 Lsky 图床的 API 接口，获取到用户 Token：[lsky-pro-v2.apifox.cn](https://lsky-pro-v2.apifox.cn/)
+或采用 ApiFox 在线调用 Lsky 图床的 API 接口，获取到用户 Token：[Lsky图床接口在线调用 - Apifox](https://lsky-pro-v2.apifox.cn/)
 
 获取到之后，把 Token 填入 yaml 即可
 
