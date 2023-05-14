@@ -42,6 +42,7 @@ lsky-upload 使用 **golang** 语言开发，程序高效，快速，简洁
    **注意：填入命令时一定要在路径两边加上 `"` 否则可能会因为路径有空格而无法运行**
 
    ![截图](./docs/img/screenshot.png)
+   [![看不到截图点我](https://img.ygxb.net/i/2023/05/14/6460666def259.png)](https://img.ygxb.net/i/2023/05/14/6460666def259.png)
 
 ## :hammer:构建
 
