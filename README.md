@@ -45,7 +45,7 @@ lsky-upload 使用 **golang** 语言开发，程序高效，快速，简洁
 
 ## :hammer:构建
 
-下载 `dev` 分支最新代码到本地，然后执行：
+克隆本仓库到本地，然后执行：
 
 ```shell
 go build
