@@ -40,11 +40,9 @@ lsky-upload 使用 **golang** 语言开发，程序高效，快速，简洁
 5. 修改 Typora 配置，在 "命令" 中填入 `lsky-upload.exe` 的位置（例：`"C:\ProgramFiles\lsky-upload\lsky-upload.exe"`）
 
    **注意：填入命令时一定要在路径两边加上 `"` 否则可能会因为路径有空格而无法运行**
+[![看不到截图点我](https://img.ygxb.net/i/2023/05/14/6460666def259.png)](https://img.ygxb.net/i/2023/05/14/6460666def259.png)
 
-   ![截图](./docs/img/screenshot.png)
-   [![看不到截图点我](https://img.ygxb.net/i/2023/05/14/6460666def259.png)](https://img.ygxb.net/i/2023/05/14/6460666def259.png)
-
-## :hammer:构建
+## :hammer: 构建
 
 > 使用 Golang 版本：1.20
 
@@ -54,7 +52,7 @@ lsky-upload 使用 **golang** 语言开发，程序高效，快速，简洁
 go build
 ```
 
-## :email:联系我
+## :email: 联系我
 
 - E-mail: [me@ygxb.net](mailto:me@ygxb.net)
 - QQ: 3040809965
