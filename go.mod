@@ -3,7 +3,7 @@ module lsky-upload
 go 1.20
 
 require (
-	github.com/tidwall/gjson v1.14.4
+	github.com/tidwall/gjson v1.15.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
