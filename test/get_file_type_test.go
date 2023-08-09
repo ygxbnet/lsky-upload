@@ -1,4 +1,4 @@
-package get_file_type
+package test
 
 import (
 	"net/http"
