@@ -54,7 +54,7 @@ go build
 
 ## :email: 联系我
 
-- E-mail: [me@ygxb.net](mailto:me@ygxb.net)
+- E-mail: [hi@ygxb.net](mailto:hi@ygxb.net)
 - QQ: 3040809965
 
 ## 其他
