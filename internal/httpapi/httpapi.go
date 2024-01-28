@@ -7,6 +7,8 @@ import (
 	"net/http"
 )
 
+var userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0"
+
 // UploadImageToLsky 上传图片到Lsky，返回相关信息
 func UploadImageToLsky(data io.Reader, imageName string, serverURL string, authToken string) (response *http.Response, error error) {
 	var bufReader bytes.Buffer
@@ -47,7 +49,7 @@ func GetNetworkImageData(url string) (data io.ReadCloser, error error) {
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.52")
+	req.Header.Add("User-Agent", userAgent)
 
 	res, err := client.Do(req)
 	if err != nil {
