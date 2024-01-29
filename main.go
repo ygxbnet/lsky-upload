@@ -17,7 +17,7 @@ import (
 
 // PATH 注意在开发时需要将路径传入
 //
-// 例如：-path C:\YGXB\Project\upload
+// 例如：-path C:\xxx\xxx
 var PATH = flag.String("path", "", "程序路径")
 
 var configData config.Result
@@ -41,6 +41,7 @@ func main() {
 		// 开发时运行路径与项目路径不同,需使用手动传入的 config.yml 地址
 		programPath = *PATH
 	}
+	// 解析配置
 	configData = config.Parse(programPath)
 
 	// 得到URL地址
@@ -51,8 +52,9 @@ func main() {
 		var getData io.Reader
 		var imageName string
 
-		// 读取图片文件
-		if url[0:4] == "http" { // 判断是否为网络图片
+		// 读取图片文件，判断是否为网络图片
+		if url[0:4] == "http" {
+			// 文件为网络图片
 			data, err := httpapi.GetNetworkImageData(url)
 			defer data.Close()
 
@@ -60,8 +62,11 @@ func main() {
 			imageType := "webp"
 			buff, err := io.ReadAll(data)
 			fileType := http.DetectContentType(buff)
-			if fileType[:5] == "image" { // 格式：image/jpeg
+			if fileType[:5] == "image" { // fileType例子：image/jpeg
 				imageType = fileType[6:]
+			} else {
+				fmt.Println("❗输入的网络链接不是图片，请检查链接是否正确\n", string(buff)[:1000])
+				os.Exit(1)
 			}
 
 			imageName = fmt.Sprintf("%s.%s", time.Now().Format("2006-01-02 15:04:05"), imageType)
@@ -98,7 +103,7 @@ func main() {
 		if response.StatusCode == 200 {
 			if gjson.Parse(string(returnMessage)).Get("status").String() == "true" {
 				// 成功上传
-				fmt.Println(gjson.Parse(string(returnMessage)).Get("data").Get("links").Get("url").String())
+				fmt.Println(gjson.Parse(string(returnMessage)).Get("data.links.url").String())
 			} else {
 				// 上传失败
 				fmt.Println("❗上传图片失败 服务器返回信息：", string(returnMessage))

@@ -8,6 +8,7 @@ import (
 )
 
 var userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0"
+var apiPath = "/api/v1/upload"
 
 // UploadImageToLsky 上传图片到Lsky，返回相关信息
 func UploadImageToLsky(data io.Reader, imageName string, serverURL string, authToken string) (response *http.Response, error error) {
@@ -27,7 +28,7 @@ func UploadImageToLsky(data io.Reader, imageName string, serverURL string, authT
 
 	// 请求http
 	client := &http.Client{}
-	req, err := http.NewRequest("POST", serverURL+"/api/v1/upload", &bufReader)
+	req, err := http.NewRequest("POST", serverURL+apiPath, &bufReader)
 	if err != nil {
 		return nil, err
 	}
