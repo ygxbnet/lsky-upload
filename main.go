@@ -48,7 +48,7 @@ func main() {
 			if fileType[:5] == "image" { // fileType例子：image/jpeg
 				imageType = fileType[6:]
 			} else {
-				fmt.Println("❗输入的网络链接不是图片，请检查链接是否正确\n", string(buff)[:1000])
+				fmt.Println("❗输入的网络链接不是图片，请检查链接是否正确\n", string(buff))
 				os.Exit(1)
 			}
 
