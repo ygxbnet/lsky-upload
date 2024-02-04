@@ -10,7 +10,7 @@ import (
 
 func Error(a ...any) {
 	writeToFile(a)
-	fmt.Println(a)
+	fmt.Println(a...)
 }
 
 func writeToFile(a ...any) {
