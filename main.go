@@ -15,11 +15,6 @@ import (
 	"time"
 )
 
-// PATH 注意在开发时需要将路径传入
-//
-// 例如：-path C:\xxx\xxx
-var PATH = flag.String("path", "", "程序路径")
-
 var configData config.Result
 
 func init() {
@@ -28,21 +23,9 @@ func init() {
 }
 
 func main() {
-	// 解析配置文件
-	var programPath string
-	if *PATH == "" {
-		path, err := utils.GetProgramPath()
-		if err != nil {
-			fmt.Println("❗无法获取当前程序路径：", err)
-			os.Exit(1)
-		}
-		programPath = path
-	} else {
-		// 开发时运行路径与项目路径不同,需使用手动传入的 config.yml 地址
-		programPath = *PATH
-	}
+
 	// 解析配置
-	configData = config.Parse(programPath)
+	configData = config.Parse(utils.GetProgramPath())
 
 	// 得到URL地址
 	urls := flag.Args()
