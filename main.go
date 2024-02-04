@@ -8,6 +8,7 @@ import (
 	"io"
 	"lsky-upload/internal/config"
 	"lsky-upload/internal/httpapi"
+	"lsky-upload/internal/log"
 	"lsky-upload/internal/utils"
 	"net/http"
 	"os"
@@ -48,13 +49,13 @@ func main() {
 			if fileType[:5] == "image" { // fileType例子：image/jpeg
 				imageType = fileType[6:]
 			} else {
-				fmt.Println("❗输入的网络链接不是图片，请检查链接是否正确\n", string(buff))
+				log.Error("❗输入的网络链接不是图片，请检查链接是否正确\n", string(buff))
 				os.Exit(1)
 			}
 
 			imageName = fmt.Sprintf("%s.%s", time.Now().Format("2006-01-02 15:04:05"), imageType)
 			if err != nil {
-				fmt.Println("❗获取网络图片错误：", err)
+				log.Error("❗获取网络图片错误：", err)
 				return
 			}
 			getData = bytes.NewReader(buff)
@@ -63,7 +64,7 @@ func main() {
 
 			data, err := os.Open(url)
 			if err != nil {
-				fmt.Println("❗打开文件失败", err)
+				log.Error("❗打开文件失败", err)
 				os.Exit(1)
 			}
 			getData = data
@@ -72,14 +73,14 @@ func main() {
 		// 上传图片到图床
 		response, err := httpapi.UploadImageToLsky(getData, imageName, configData.LskyServer, configData.LskyAuthToken)
 		if err != nil {
-			fmt.Println("❗上传图片错误：", err)
+			log.Error("❗上传图片错误：", err)
 			return
 		}
 		defer response.Body.Close()
 
 		returnMessage, err := io.ReadAll(response.Body)
 		if err != nil {
-			fmt.Println("❗读取http返回信息失败：", err)
+			log.Error("❗读取http返回信息失败：", err)
 		}
 
 		// 处理返回结果
@@ -89,7 +90,7 @@ func main() {
 				fmt.Println(gjson.Parse(string(returnMessage)).Get("data.links.url").String())
 			} else {
 				// 上传失败
-				fmt.Println("❗上传图片失败 服务器返回信息：", string(returnMessage))
+				log.Error("❗上传图片失败 服务器返回信息：", string(returnMessage))
 			}
 		} else {
 			// 请求上传图片接口失败

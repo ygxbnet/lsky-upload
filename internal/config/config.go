@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"fmt"
 	"gopkg.in/yaml.v3"
+	"lsky-upload/internal/log"
 	"os"
 )
 
@@ -16,14 +17,14 @@ func Parse(filePath string) (config Result) {
 
 	file, err := os.ReadFile(filePath + "/config.yml")
 	if err != nil {
-		fmt.Println("❗读取配置文件错误：", err)
+		log.Error("❗读取配置文件错误：", err)
 		os.Exit(1)
 	}
 
 	conf := Result{}
 	err = yaml.Unmarshal(file, &conf)
 	if err != nil {
-		fmt.Println("❗解析配置文件错误：", err)
+		log.Error("❗解析配置文件错误：", err)
 		os.Exit(1)
 	}
 	return conf
@@ -35,14 +36,14 @@ func initFile(filePath string) {
 	if os.IsNotExist(err) {
 		file, err := os.Create(filePath + "/config.yml")
 		if err != nil {
-			fmt.Println(err)
+			log.Error(err)
 			os.Exit(1)
 		}
 		defer file.Close()
 
 		_, err = file.Write([]byte(DEFAULT_CONFIG))
 		if err != nil {
-			fmt.Println(err)
+			log.Error(err)
 			os.Exit(1)
 		}
 		fmt.Println("未发现配置文件，已创建 ", filePath+"/config.yml")
