@@ -94,7 +94,7 @@ func main() {
 			}
 		} else {
 			// 请求上传图片接口失败
-			fmt.Printf("❗请求接口%d \t\n详细信息：%s", response.StatusCode, string(returnMessage))
+			log.Error(fmt.Sprintf("❗请求接口%d \t\n详细信息：%s", response.StatusCode, string(returnMessage)))
 		}
 	}
 }
