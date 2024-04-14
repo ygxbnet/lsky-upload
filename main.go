@@ -53,6 +53,7 @@ func main() {
 				os.Exit(1)
 			}
 
+			// 格式化图片名称
 			imageName = fmt.Sprintf("%s.%s", time.Now().Format("2006-01-02 15:04:05"), imageType)
 			if err != nil {
 				log.Error("❗获取网络图片错误：", err)

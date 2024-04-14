@@ -43,19 +43,26 @@ func UploadImageToLsky(data io.Reader, imageName string, serverURL string, authT
 	return res, nil
 }
 
-// GetNetworkImageData 请求URL，获取图片数据，返回数据
+// GetNetworkImageData 获取网络图片数据
 func GetNetworkImageData(url string) (data io.ReadCloser, error error) {
+	// 创建一个http.Client实例
 	client := &http.Client{}
+	// 创建一个GET请求
 	req, err := http.NewRequest("GET", url, nil)
+	// 如果创建请求失败，返回错误
 	if err != nil {
 		return nil, err
 	}
+	// 设置请求头中的User-Agent
 	req.Header.Add("User-Agent", userAgent)
 
+	// 执行请求
 	res, err := client.Do(req)
+	// 如果执行请求失败，返回错误
 	if err != nil {
 		return nil, err
 	}
 
+	// 返回图片数据和nil
 	return res.Body, nil
 }

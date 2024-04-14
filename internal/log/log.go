@@ -8,11 +8,13 @@ import (
 	"path"
 )
 
+// Error 函数用于打印错误日志
 func Error(a ...any) {
 	writeToFile(a)
 	fmt.Println(a...)
 }
 
+// writeToFile 函数用于将错误日志写入文件
 func writeToFile(a ...any) {
 	f, err := os.OpenFile(path.Join(utils.GetProgramPath(), "lsky-upload.log"), os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
 	if err != nil {
