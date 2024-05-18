@@ -9,14 +9,11 @@ import (
 	"lsky-upload/internal/config"
 	"lsky-upload/internal/httpapi"
 	"lsky-upload/internal/log"
-	"lsky-upload/internal/utils"
 	"net/http"
 	"os"
 	"path/filepath"
 	"time"
 )
-
-var configData config.Result
 
 func init() {
 	// 解析传入参数
@@ -26,7 +23,7 @@ func init() {
 func main() {
 
 	// 解析配置
-	configData = config.Parse(utils.GetProgramPath())
+	config.Init()
 
 	// 得到URL地址
 	urls := flag.Args()
@@ -72,7 +69,11 @@ func main() {
 		}
 
 		// 上传图片到图床
-		response, err := httpapi.UploadImageToLsky(getData, imageName, configData.LskyServer, configData.LskyAuthToken)
+		response, err := httpapi.UploadImageToLsky(
+			getData,
+			imageName,
+			config.ConfigData.LskyServer,
+			config.ConfigData.LskyAuthToken)
 		if err != nil {
 			log.Error("❗上传图片错误：", err)
 			return

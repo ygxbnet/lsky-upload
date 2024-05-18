@@ -5,11 +5,20 @@ import (
 	"fmt"
 	"gopkg.in/yaml.v3"
 	"lsky-upload/internal/log"
+	"lsky-upload/internal/utils"
 	"os"
 )
 
 //go:embed config-default.yml
 var DEFAULT_CONFIG string
+
+// ConfigData 配置文件结构体
+var ConfigData Result
+
+// Init 初始化配置文件
+func Init() {
+	ConfigData = Parse(utils.GetProgramPath())
+}
 
 // Parse 从默认配置文件路径中获取配置文件内容，并解析为结构体
 func Parse(filePath string) (config Result) {

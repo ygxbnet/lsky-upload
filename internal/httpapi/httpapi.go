@@ -2,7 +2,9 @@ package httpapi
 
 import (
 	"bytes"
+	"crypto/tls"
 	"io"
+	"lsky-upload/internal/config"
 	"mime/multipart"
 	"net/http"
 )
@@ -27,7 +29,11 @@ func UploadImageToLsky(data io.Reader, imageName string, serverURL string, authT
 	mpWriter.Close()
 
 	// 请求http
-	client := &http.Client{}
+	tr := &http.Transport{
+		// 跳过证书验证
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: config.ConfigData.InsecureSkipVerify},
+	}
+	client := &http.Client{Transport: tr}
 	req, err := http.NewRequest("POST", serverURL+apiPath, &bufReader)
 	if err != nil {
 		return nil, err
