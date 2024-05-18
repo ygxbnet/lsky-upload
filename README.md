@@ -59,6 +59,8 @@ go build
 
 ## 其他
 
+如果喜欢本项目，请给一个 Star 吧！
+
 本项目的文档和教程还未完善，欢迎大家提出建议和问题到 [Issues](https://github.com/YGXB-net/lsky-upload/issues)
 
 如果不会使用或使用时遇到程序错误，可以加我的 QQ: 3040809965，我会一一解答问题
