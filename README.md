@@ -1,7 +1,7 @@
 # lsky-upload
 Picture bed upload program of Lsky（Lsky 图床的上传程序）
 
-[![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/YGXB-net/lsky-upload)](./go.mod) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/YGXB-net/lsky-upload)](../../releases/latest) [![GitHub](https://img.shields.io/github/license/YGXB-net/lsky-upload)](./LICENSE)
+[![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/ygxbnet/lsky-upload)](./go.mod) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/ygxbnet/lsky-upload)](../../releases/latest) [![GitHub](https://img.shields.io/github/license/ygxbnet/lsky-upload)](./LICENSE)
 
 [文档](./docs) • [下载](../../releases/latest) • [开始使用](#下载--使用方法)
 
@@ -9,7 +9,7 @@ Picture bed upload program of Lsky（Lsky 图床的上传程序）
 >
 > 所以就想自己开发一个简单，可以满足自己需求的程序，并且开源出来
 >
-> 于是就有了此项目 [lsky-upload](https://github.com/YGXB-net/lsky-upload)
+> 于是就有了此项目 [lsky-upload](https://github.com/ygxbnet/lsky-upload)
 
 ------
 
@@ -61,6 +61,6 @@ go build
 
 如果喜欢本项目，请给一个 Star 吧！
 
-本项目的文档和教程还未完善，欢迎大家提出建议和问题到 [Issues](https://github.com/YGXB-net/lsky-upload/issues)
+本项目的文档和教程还未完善，欢迎大家提出建议和问题到 [Issues](https://github.com/ygxbnet/lsky-upload/issues)
 
 如果不会使用或使用时遇到程序错误，可以加我的 QQ: 3040809965，我会一一解答问题
