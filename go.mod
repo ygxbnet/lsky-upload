@@ -1,6 +1,6 @@
 module lsky-upload
 
-go 1.23
+go 1.25
 
 require (
 	github.com/tidwall/gjson v1.18.0
