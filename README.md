@@ -1,7 +1,9 @@
-# lsky-upload
-Picture bed upload program of Lsky（Lsky 图床的上传程序）
+# Lsky 图床的上传程序
 
-[![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/ygxbnet/lsky-upload)](./go.mod) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/ygxbnet/lsky-upload?label=release&logo=github)](../../releases/latest) [![GitHub](https://img.shields.io/github/license/ygxbnet/lsky-upload)](./LICENSE)
+[![LICENSE](https://img.shields.io/github/license/ygxbnet/lsky-upload)](./LICENSE)
+[![Go version](https://img.shields.io/github/go-mod/go-version/ygxbnet/lsky-upload)](./go.mod)
+[![Build](https://github.com/ygxbnet/lsky-upload/actions/workflows/build_test.yml/badge.svg?branch=main)](https://github.com/ygxbnet/lsky-upload/actions/workflows/build_test.yml)
+[![Release](https://img.shields.io/github/v/release/ygxbnet/lsky-upload?label=%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC&logo=github)](../../releases/latest)
 
 [文档](./docs) • [下载](../../releases/latest) • [开始使用](#下载--使用方法)
 
