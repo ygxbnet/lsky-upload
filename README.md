@@ -1,4 +1,4 @@
-# Lsky 图床的上传程序
+# lsky-upload 图床上传程序
 
 [![LICENSE](https://img.shields.io/github/license/ygxbnet/lsky-upload)](./LICENSE)
 [![Go version](https://img.shields.io/github/go-mod/go-version/ygxbnet/lsky-upload)](./go.mod)
