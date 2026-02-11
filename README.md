@@ -46,7 +46,7 @@ lsky-upload 使用 **golang** 语言开发，程序高效，快速，简洁
 
 ## :hammer: 构建
 
-> 使用 Golang 版本：1.25
+> 使用 Golang 版本：1.26
 
 克隆本仓库到本地，然后执行：
 
